@@ -383,10 +383,10 @@ clean :
 $(TARGET) : ./Build ./lib $(OBJECTS)
 	gcc -shared -o $(TARGET) $(OBJECTS)
 
-./Build
+./Build :
 	mkdir Build
 
-./lib
+./lib :
 	mkdir lib
 
 ./Build/jausComponent.o : ./src/jausComponent.c

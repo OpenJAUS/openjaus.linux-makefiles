@@ -81,10 +81,10 @@ clean :
 $(TARGET) : ./Build ./lib $(OBJECTS)
 	g++ -shared $(LFLAGS) -o $(TARGET) $(OBJECTS) $(LIBS)
 
-./Build
+./Build :
 	mkdir Build
 
-./lib
+./lib :
 	mkdir lib
 
 ./Build/ojCmpt.o : ./src/componentLibrary/ojCmpt.c
