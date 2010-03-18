@@ -78,8 +78,14 @@ clean :
 	rm -f ./Build/*.o
 	rm -f $(TARGET)
 
-$(TARGET) : $(OBJECTS)
+$(TARGET) : ./Build ./lib $(OBJECTS)
 	g++ -shared $(LFLAGS) -o $(TARGET) $(OBJECTS) $(LIBS)
+
+./Build
+	mkdir Build
+
+./lib
+	mkdir lib
 
 ./Build/ojCmpt.o : ./src/componentLibrary/ojCmpt.c
 	gcc $(CCFLAGS) -o ./Build/ojCmpt.o ./src/componentLibrary/ojCmpt.c

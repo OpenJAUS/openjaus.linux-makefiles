@@ -380,9 +380,14 @@ clean :
 	rm -f ./Build/*.o
 	rm -f $(TARGET)
 
-$(TARGET) : $(OBJECTS)
+$(TARGET) : ./Build ./lib $(OBJECTS)
 	gcc -shared -o $(TARGET) $(OBJECTS)
 
+./Build
+	mkdir Build
+
+./lib
+	mkdir lib
 
 ./Build/jausComponent.o : ./src/jausComponent.c
 	gcc $(CCFLAGS) -o ./Build/jausComponent.o ./src/jausComponent.c
