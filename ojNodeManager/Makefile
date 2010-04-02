@@ -15,8 +15,14 @@ clean :
 	rm -f ./Build/*.o
 	rm -f $(TARGET)
 
-$(TARGET) : $(OBJECTS)
+$(TARGET) : ./Build ./bin $(OBJECTS)
 	g++ $(LFLAGS) -o $(TARGET) $(OBJECTS) $(LIBS)
+
+./Build :
+	mkdir Build
+
+./bin :
+	mkdir lib
 
 ./Build/main.o : ./src/main.cpp
 	g++ $(CCFLAGS) -o ./Build/main.o ./src/main.cpp

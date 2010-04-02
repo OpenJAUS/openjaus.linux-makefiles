@@ -44,8 +44,14 @@ clean :
 	rm -f ./Build/*.o
 	rm -f $(TARGET)
 
-$(TARGET) : $(OBJECTS)
+$(TARGET) : ./Build ./bin $(OBJECTS)
 	g++ $(LFLAGS) -o $(TARGET) $(OBJECTS) $(LIBS)
+
+./Build :
+	mkdir Build
+
+./bin :
+	mkdir bin
 
 ./Build/gpos.o : ./src/gpos.c
 	gcc $(CCFLAGS) -o ./Build/gpos.o ./src/gpos.c
