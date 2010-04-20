@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 exec > Makefile
 
@@ -12,28 +12,26 @@ echo "LIBS		=	-ljaus"
 SOURCE_C_FILES=`find ./src/ -name "*.c"`
 for cfile in $SOURCE_C_FILES
 do
-	SOURCES="$SOURCES$cfile \\\\\\n\\t\\t"
+	SOURCES="$SOURCES $cfile"
 	ofile=${cfile##*/}
 	ofile=./Build/${ofile%c}o
-	OBJECTS="$OBJECTS$ofile \\\\\\n\\t\\t"
+	OBJECTS="$OBJECTS $ofile"
 done
 
 SOURCE_CPP_FILES=`find ./src/ -name "*.cpp"`
 for cfile in $SOURCE_CPP_FILES
 do
-	SOURCES="$SOURCES$cfile \\\\\\n\\t\\t"
+	SOURCES="$SOURCES $cfile"
 	ofile=${cfile##*/}
 	ofile=./Build/${ofile%cpp}o
 	if [ "$ofile" != "./Build/main.o" ]; then
-		OBJECTS="$OBJECTS$ofile \\\\\\n\\t\\t"
+		OBJECTS="$OBJECTS $ofile"
 	fi
 done
 
-SOURCES=${SOURCES%" \\\\\\n"\\t\\t}
-echo -e "SOURCES =\t$SOURCES"
+echo "SOURCES = $SOURCES"
 
-OBJECTS=${OBJECTS%" \\\\\\n"\\t\\t}
-echo -e "\nOBJECTS =\t$OBJECTS"
+echo "OBJECTS = $OBJECTS"
 
 echo
 echo "default : all"
@@ -54,7 +52,8 @@ do
 
 	echo
 	rule=./Build/"`gcc $cfile -MM -MG -I ./include/`"
-	echo "${rule//jaus.h/}"
+	rule=${rule//jaus.h/}
+	echo ${rule//\\/}
 	echo "	gcc \$(CCFLAGS) -o $ofile $cfile"
 done
 
@@ -65,6 +64,7 @@ do
 
 	echo
 	rule=./Build/"`gcc $cfile -MM -MG -I ./include/`"
-	echo "${rule//jaus.h/}"
+	rule=${rule//jaus.h/}
+	echo ${rule//\\/}
 	echo "	g++ \$(CCFLAGS) -o $ofile $cfile"
 done
