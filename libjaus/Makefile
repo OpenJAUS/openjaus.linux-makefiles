@@ -376,7 +376,13 @@ OBJECTS =	./Build/jausNode.o \
 
 default : all
 
-all : $(TARGET)
+all : $(TARGET) ./Build ./lib
+
+./Build :
+	mkdir ./Build
+
+./lib :
+	mkdir ./lib
 
 clean :
 	rm -f ./Build/*.o
