@@ -149,6 +149,7 @@ SOURCES =	./src/jausNode.c \
 		./src/message/query/dynamicConfiguration/queryConfigurationMessage.c \
 		./src/message/query/dynamicConfiguration/querySubsystemListMessage.c \
 		./src/message/query/dynamicConfiguration/queryIdentificationMessage.c \
+		./src/message/query/environment/queryMapMessage.c \
 		./src/message/query/environment/queryCameraPoseMessage.c \
 		./src/message/query/environment/queryRelativeObjectPositionMessage.c \
 		./src/message/query/environment/queryCameraCountMessage.c \
@@ -336,6 +337,7 @@ OBJECTS =	./Build/jausNode.o \
 		./Build/queryConfigurationMessage.o \
 		./Build/querySubsystemListMessage.o \
 		./Build/queryIdentificationMessage.o \
+		./Build/queryMapMessage.o \
 		./Build/queryCameraPoseMessage.o \
 		./Build/queryRelativeObjectPositionMessage.o \
 		./Build/queryCameraCountMessage.o \
@@ -838,6 +840,9 @@ $(TARGET) : $(OBJECTS)
 
 ./Build/queryIdentificationMessage.o : ./src/message/query/dynamicConfiguration/queryIdentificationMessage.c
 	gcc $(CCFLAGS) -o ./Build/queryIdentificationMessage.o ./src/message/query/dynamicConfiguration/queryIdentificationMessage.c
+
+./Build/queryMapMessage.o : ./src/message/query/environment/queryMapMessage.c
+	gcc $(CCFLAGS) -o ./Build/queryMapMessage.o ./src/message/query/environment/queryMapMessage.c
 
 ./Build/queryCameraPoseMessage.o : ./src/message/query/environment/queryCameraPoseMessage.c
 	gcc $(CCFLAGS) -o ./Build/queryCameraPoseMessage.o ./src/message/query/environment/queryCameraPoseMessage.c
